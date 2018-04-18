@@ -11,10 +11,16 @@ const getRestCountriesComplete = function(allCountries){
   countryView.createCountryDropdown(allCountries);
 }
 
+const addCountryButtonClicked = function() {
+  console.log("Button clicked!");
+}
 
 const appStart = function(){
   console.log("DOM content loaded, app starting...");
   requestRestCountries.get(getRestCountriesComplete);
+
+  const addCountryButton = document.querySelector("#add-country");
+  addCountryButton.addEventListener("click", addCountryButtonClicked);
 }
 
 
