@@ -34,8 +34,17 @@ MongoClient.connect("mongodb://localhost:27017", function(err, client){
     });
   });
 
-  
-
+  server.get("/api/bucket_list", function(req, res){
+    const bucketListCollection = db.collection("countries");
+    bucketListCollection.find().toArray(function(err, allCountries){
+      if (err) {
+        console.log(err);
+        res.status(500);
+        res.send();
+      }
+      res.json(allCountries);
+    });
+  });
 
 
   server.listen(3000, function(){
