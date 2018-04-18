@@ -11,16 +11,25 @@ const getRestCountriesComplete = function(allCountries){
   countryView.createCountryDropdown(allCountries);
 }
 
-const addCountryButtonClicked = function() {
-  console.log("Button clicked!");
-}
+// const addCountryButtonClicked = function() {
+//   const  = document.querySelector("#select-country");
+//   addCountryButton.addEventListener("change", function(event) {
+//
+//   })
+//   debugger;
+// }
 
 const appStart = function(){
   console.log("DOM content loaded, app starting...");
   requestRestCountries.get(getRestCountriesComplete);
 
-  const addCountryButton = document.querySelector("#add-country");
-  addCountryButton.addEventListener("click", addCountryButtonClicked);
+  // const addCountryButton = document.querySelector("#add-country");
+  // addCountryButton.addEventListener("click", addCountryButtonClicked);
+
+  const dropDown = document.querySelector("#select-country");
+  dropDown.addEventListener("change", function(event) {
+    console.log(event);
+  })
 }
 
 
