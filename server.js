@@ -1,11 +1,11 @@
 const express = require("express");
-const app = express();
+const server = express();
 const path = require("path");
 const bodyParser = require("body-parser");
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static("client/build"));
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({extended: true}));
+server.use(express.static("client/build"));
 
 const MongoClient = require("mongodb").MongoClient;
 
@@ -19,7 +19,24 @@ MongoClient.connect("mongodb://localhost:27017", function(err, client){
 
   console.log("Connected to db");
 
-  app.listen(3000, function(){
+  server.post("/api/bucket_list", function(req, res) {
+    const bucketListCollection = db.collection("countries");
+    const countryToSave = req.body;
+    bucketListCollection.save(countryToSave, function(err, result) {
+      if(err) {
+        console.log(err);
+        res.status(500);
+        res.send();
+      }
+      console.log("Saved country to your bucket List!");
+      res.status(201);
+      res.json(countryToSave);
+    });
+  });
+
+
+
+  server.listen(3000, function(){
     console.log("Listening for requests on port 3000");
   });
 });
