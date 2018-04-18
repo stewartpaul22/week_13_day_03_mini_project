@@ -1,13 +1,14 @@
 // Initial app.js
 const Request = require('./services/requests.js');
+const CountryView = require('./views/countryView.js');
 
 const requestBucketList = new Request('http://localhost:3000/api/bucket_list');
 const requestRestCountries = new Request('https://restcountries.eu/rest/v2/all');
 
+const countryView = new CountryView();
+
 const getRestCountriesComplete = function(allCountries){
-  for(let country of allCountries){
-    console.log("Country Name: ", country.name);
-  }
+  countryView.createCountryDropdown(allCountries);
 }
 
 
