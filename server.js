@@ -19,7 +19,6 @@ MongoClient.connect("mongodb://localhost:27017", function(err, client){
 
   console.log("Connected to db");
 
-
   app.listen(3000, function(){
     console.log("Listening for requests on port 3000");
   });
