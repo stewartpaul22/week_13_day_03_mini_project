@@ -24,6 +24,7 @@ const getRestCountriesComplete = function(allCountries){
   });
 };
 
+
 const appStart = function(){
   console.log("DOM content loaded, app starting...");
   requestRestCountries.get(getRestCountriesComplete);
