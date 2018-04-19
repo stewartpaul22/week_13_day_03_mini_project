@@ -8,8 +8,15 @@ const requestRestCountries = new Request('https://restcountries.eu/rest/v2/all')
 const countryView = new CountryView();
 
 const createRequestComplete = function(newBucketListCountry){
+  console.log("hello");
   countryView.addCountry(newBucketListCountry);
   console.log("create request complete", newBucketListCountry.name);
+}
+
+const getBucketListComplete = function(bucketList) {
+  bucketList.forEach(function(country) {
+    countryView.render(country);
+  });
 }
 
 
@@ -39,6 +46,8 @@ const appStart = function(){
   console.log("DOM content loaded, app starting...");
 
   requestRestCountries.get(getRestCountriesComplete);
+  requestBucketList.get(getBucketListComplete);
+
 
 
 
