@@ -11,26 +11,24 @@ const getRestCountriesComplete = function(allCountries){
   countryView.createCountryDropdown(allCountries);
 }
 
-// const addCountryButtonClicked = function() {
-//   const  = document.querySelector("#select-country");
-//   addCountryButton.addEventListener("change", function(event) {
-//
-//   })
-//   debugger;
-// }
+// todo:  createRequestComplete
+
+const addCountryButtonClicked = function() {
+  const selectedCountry = document.querySelector("#select-country").value;
+
+  const countryToSend = { name: selectedCountry };
+
+  // requestBucketList.post(createRequestComplete, countryToSend);
+}
 
 const appStart = function(){
   console.log("DOM content loaded, app starting...");
+
   requestRestCountries.get(getRestCountriesComplete);
 
-  // const addCountryButton = document.querySelector("#add-country");
-  // addCountryButton.addEventListener("click", addCountryButtonClicked);
+  const addCountryButton = document.querySelector("#add-country");
+  addCountryButton.addEventListener("click", addCountryButtonClicked);
 
-  const dropDown = document.querySelector("#select-country");
-  dropDown.addEventListener("change", function(event) {
-    console.log(event);
-  })
 }
-
 
 document.addEventListener('DOMContentLoaded', appStart);
