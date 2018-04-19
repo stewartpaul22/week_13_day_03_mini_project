@@ -18,14 +18,14 @@ const createRequestComplete = function(newBucketListCountry){
 const renderMap = function(bucketList){
   const mapContainer = document.querySelector("#main-map");
   const map = new MapWrapper(mapContainer, {lat: 44, lng: 3}, 10);
-  debugger;
+  console.log("Rendered map...");
 }
 
 const getBucketListComplete = function(bucketList) {
   bucketList.forEach(function(country) {
     countryView.render(country);
   });
-
+  console.log("About to render map...");
   renderMap(bucketList);
 }
 
