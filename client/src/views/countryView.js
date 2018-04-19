@@ -19,4 +19,20 @@ CountryView.prototype.createCountryDropdown = function (apiCountries) {
   // })
 };
 
+CountryView.prototype.addCountry = function (country) {
+  this.countries.push(country);
+  this.render(country);
+  debugger;
+};
+
+CountryView.prototype.render = function (country) {
+  const ul = document.querySelector("#bucket-countries");
+  const li = document.createElement("li");
+  const text = document.createElement("p");
+  text.innerText = country.name;
+  li.appendChild(text);
+  ul.appendChild(li);
+};
+
+
 module.exports = CountryView;

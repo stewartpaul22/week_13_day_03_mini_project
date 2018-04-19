@@ -11,14 +11,16 @@ const getRestCountriesComplete = function(allCountries){
   countryView.createCountryDropdown(allCountries);
 }
 
-// todo:  createRequestComplete
+const createRequestComplete = function(newBucketListCountry){
+  countryView.addCountry(newBucketListCountry);
+}
 
 const addCountryButtonClicked = function() {
   const selectedCountry = document.querySelector("#select-country").value;
 
   const countryToSend = { name: selectedCountry };
 
-  // requestBucketList.post(createRequestComplete, countryToSend);
+  requestBucketList.post(createRequestComplete, countryToSend);
 }
 
 const appStart = function(){
