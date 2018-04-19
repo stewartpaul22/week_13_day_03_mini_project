@@ -22,7 +22,7 @@ const renderMap = function(bucketList){
   for(let country of bucketList) {
     console.log(country);
     const coords = {lat: parseFloat(country.latlng[0]), lng: parseFloat(country.latlng[1])};
-    map.addMarker(coords, "testText");
+    map.addMarker(coords, country.name);
   }
 }
 
