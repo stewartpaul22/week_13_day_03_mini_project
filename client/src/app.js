@@ -7,32 +7,31 @@ const requestRestCountries = new Request('https://restcountries.eu/rest/v2/all')
 
 const countryView = new CountryView();
 
+const createRequestComplete = function(newBucketListCountry){
+  countryView.addCountry(newBucketListCountry);
+  console.log("create request complete", newBucketListCountry.name);
+}
+
+
 const getRestCountriesComplete = function(allCountries){
   let selectedCountry = {};
 
+  // populates drop down
   countryView.createCountryDropdown(allCountries);
 
-const createRequestComplete = function(newBucketListCountry){
-  countryView.addCountry(newBucketListCountry);
-}
-
-const addCountryButtonClicked = function() {
-  const selectedCountry = document.querySelector("#select-country").value;
-
-  const countryToSend = { name: selectedCountry };
-
-  requestBucketList.post(createRequestComplete, countryToSend);
-}
-
+  // on change, stores selected country as local variable
   const dropDown = document.querySelector("#select-country");
   dropDown.addEventListener("change", function(event){
     selectedCountry = allCountries[(event.target.selectedIndex) -1];
     console.log(selectedCountry);
   });
 
+  // on click, adds country to stored bucket list in database
   const addCountryButton = document.querySelector("#add-country");
   addCountryButton.addEventListener("click", function(event){
     console.log("Add Country button clicked.. country selected is: ", selectedCountry);
+    requestBucketList.post(createRequestComplete, selectedCountry);
+
   });
 };
 
@@ -42,8 +41,6 @@ const appStart = function(){
   requestRestCountries.get(getRestCountriesComplete);
 
 
-  const addCountryButton = document.querySelector("#add-country");
-  addCountryButton.addEventListener("click", addCountryButtonClicked);
 
 }
 
