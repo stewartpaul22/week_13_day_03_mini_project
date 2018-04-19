@@ -17,8 +17,13 @@ const createRequestComplete = function(newBucketListCountry){
 
 const renderMap = function(bucketList){
   const mapContainer = document.querySelector("#main-map");
-  const map = new MapWrapper(mapContainer, {lat: 44, lng: 3}, 10);
+  const map = new MapWrapper(mapContainer, {lat: 44, lng: 3}, 3);
   console.log("Rendered map...");
+  for(let country of bucketList) {
+    console.log(country);
+    const coords = {lat: parseFloat(country.latlng[0]), lng: parseFloat(country.latlng[1])};
+    map.addMarker(coords, "testText");
+  }
 }
 
 const getBucketListComplete = function(bucketList) {
@@ -44,6 +49,7 @@ const getRestCountriesComplete = function(allCountries){
   const dropDown = document.querySelector("#select-country");
   dropDown.addEventListener("change", function(event){
     selectedCountry = allCountries[(event.target.selectedIndex) -1];
+    debugger;
     console.log(selectedCountry);
   });
 
