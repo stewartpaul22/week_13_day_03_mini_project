@@ -8,29 +8,25 @@ const requestRestCountries = new Request('https://restcountries.eu/rest/v2/all')
 const countryView = new CountryView();
 
 const getRestCountriesComplete = function(allCountries){
-  countryView.createCountryDropdown(allCountries);
-}
+  let selectedCountry = {};
 
-// const addCountryButtonClicked = function() {
-//   const  = document.querySelector("#select-country");
-//   addCountryButton.addEventListener("change", function(event) {
-//
-//   })
-//   debugger;
-// }
+  countryView.createCountryDropdown(allCountries);
+
+  const dropDown = document.querySelector("#select-country");
+  dropDown.addEventListener("change", function(event){
+    selectedCountry = allCountries[(event.target.selectedIndex) -1];
+    console.log(selectedCountry);
+  });
+
+  const addCountryButton = document.querySelector("#add-country");
+  addCountryButton.addEventListener("click", function(event){
+    console.log("Add Country button clicked.. country selected is: ", selectedCountry);
+  });
+};
 
 const appStart = function(){
   console.log("DOM content loaded, app starting...");
   requestRestCountries.get(getRestCountriesComplete);
-
-  // const addCountryButton = document.querySelector("#add-country");
-  // addCountryButton.addEventListener("click", addCountryButtonClicked);
-
-  const dropDown = document.querySelector("#select-country");
-  dropDown.addEventListener("change", function(event) {
-    console.log(event);
-  })
 }
-
 
 document.addEventListener('DOMContentLoaded', appStart);
