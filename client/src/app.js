@@ -66,7 +66,7 @@ const getRestCountriesComplete = function(allCountries){
 
 const appStart = function(){
   const mapContainer = document.querySelector("#main-map");
-  map = new MapWrapper(mapContainer, {lat: 0, lng: 0}, 2);
+  map = new MapWrapper(mapContainer, {lat: 28, lng: 1.6}, 2);
 
   console.log("DOM content loaded, app starting...");
 
