@@ -8,8 +8,9 @@ const requestRestCountries = new Request('https://restcountries.eu/rest/v2/all')
 const countryView = new CountryView();
 
 const getRestCountriesComplete = function(allCountries){
+  let selectedCountry = {};
+
   countryView.createCountryDropdown(allCountries);
-}
 
 const createRequestComplete = function(newBucketListCountry){
   countryView.addCountry(newBucketListCountry);
@@ -23,10 +24,23 @@ const addCountryButtonClicked = function() {
   requestBucketList.post(createRequestComplete, countryToSend);
 }
 
+  const dropDown = document.querySelector("#select-country");
+  dropDown.addEventListener("change", function(event){
+    selectedCountry = allCountries[(event.target.selectedIndex) -1];
+    console.log(selectedCountry);
+  });
+
+  const addCountryButton = document.querySelector("#add-country");
+  addCountryButton.addEventListener("click", function(event){
+    console.log("Add Country button clicked.. country selected is: ", selectedCountry);
+  });
+};
+
 const appStart = function(){
   console.log("DOM content loaded, app starting...");
 
   requestRestCountries.get(getRestCountriesComplete);
+
 
   const addCountryButton = document.querySelector("#add-country");
   addCountryButton.addEventListener("click", addCountryButtonClicked);
