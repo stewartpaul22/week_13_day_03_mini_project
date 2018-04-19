@@ -2,6 +2,8 @@
 const Request = require('./services/requests.js');
 const CountryView = require('./views/countryView.js');
 const MapWrapper = require("./views/viewMap.js");
+let map = {};
+
 
 const requestBucketList = new Request('http://localhost:3000/api/bucket_list');
 const requestRestCountries = new Request('https://restcountries.eu/rest/v2/all');
@@ -13,11 +15,12 @@ const createRequestComplete = function(newBucketListCountry){
   console.log("hello");
   countryView.addCountry(newBucketListCountry);
   console.log("create request complete", newBucketListCountry.name);
+  const coords = {lat: parseFloat(newBucketListCountry.latlng[0]), lng: parseFloat(newBucketListCountry.latlng[1])};
+  map.addMarker(coords, newBucketListCountry.name);
+
 }
 
 const renderMap = function(bucketList){
-  const mapContainer = document.querySelector("#main-map");
-  const map = new MapWrapper(mapContainer, {lat: 44, lng: 3}, 3);
   console.log("Rendered map...");
   for(let country of bucketList) {
     console.log(country);
@@ -49,7 +52,6 @@ const getRestCountriesComplete = function(allCountries){
   const dropDown = document.querySelector("#select-country");
   dropDown.addEventListener("change", function(event){
     selectedCountry = allCountries[(event.target.selectedIndex) -1];
-    debugger;
     console.log(selectedCountry);
   });
 
@@ -63,10 +65,16 @@ const getRestCountriesComplete = function(allCountries){
 };
 
 const appStart = function(){
+  const mapContainer = document.querySelector("#main-map");
+  map = new MapWrapper(mapContainer, {lat: 0, lng: 0}, 2);
+
   console.log("DOM content loaded, app starting...");
+
 
   requestRestCountries.get(getRestCountriesComplete);
   requestBucketList.get(getBucketListComplete);
+
+
 
   const deleteBucketListButton = document.querySelector("#delete-countries");
   deleteBucketListButton.addEventListener("click", function(){
