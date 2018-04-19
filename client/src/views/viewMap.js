@@ -25,3 +25,5 @@ MapWrapper.prototype.addMarker = function (coords, info) {
   this.markers.push(marker);
   return marker;
 };
+
+module.exports = MapWrapper;

@@ -1,9 +1,11 @@
 // Initial app.js
 const Request = require('./services/requests.js');
 const CountryView = require('./views/countryView.js');
+const MapWrapper = require("./views/viewMap.js");
 
 const requestBucketList = new Request('http://localhost:3000/api/bucket_list');
 const requestRestCountries = new Request('https://restcountries.eu/rest/v2/all');
+
 
 const countryView = new CountryView();
 
@@ -13,10 +15,18 @@ const createRequestComplete = function(newBucketListCountry){
   console.log("create request complete", newBucketListCountry.name);
 }
 
+const renderMap = function(bucketList){
+  const mapContainer = document.querySelector("#main-map");
+  const map = new MapWrapper(mapContainer, {lat: 44, lng: 3}, 10);
+  debugger;
+}
+
 const getBucketListComplete = function(bucketList) {
   bucketList.forEach(function(country) {
     countryView.render(country);
   });
+
+  renderMap(bucketList);
 }
 
 const clearBucketListComplete = function(){
