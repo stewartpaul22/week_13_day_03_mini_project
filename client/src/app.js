@@ -19,6 +19,10 @@ const getBucketListComplete = function(bucketList) {
   });
 }
 
+const clearBucketListComplete = function(){
+  countryView.clear();
+}
+
 
 const getRestCountriesComplete = function(allCountries){
   let selectedCountry = {};
@@ -48,9 +52,10 @@ const appStart = function(){
   requestRestCountries.get(getRestCountriesComplete);
   requestBucketList.get(getBucketListComplete);
 
-
-
-
+  const deleteBucketListButton = document.querySelector("#delete-countries");
+  deleteBucketListButton.addEventListener("click", function(){
+    requestBucketList.delete(clearBucketListComplete);
+  });
 }
 
 document.addEventListener('DOMContentLoaded', appStart);

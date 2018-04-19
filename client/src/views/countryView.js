@@ -17,6 +17,12 @@ CountryView.prototype.addCountry = function (country) {
   this.render(country);
 };
 
+CountryView.prototype.clear = function() {
+  this.countries = [];
+  const ul = document.querySelector('#bucket-countries');
+  ul.innerHTML = '';
+}
+
 CountryView.prototype.render = function (country) {
   const ul = document.querySelector("#bucket-countries");
   const li = document.createElement("li");
