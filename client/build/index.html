@@ -5,19 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
   <script src="bundle.js"></script>
   <title>Document</title>
 </head>
 <body>
-
+  <div class="buttons">
   <select id="select-country" >
     <option disabled selected>Choose a country</option>
   </select>
-  <button id="add-country">Add Country</button>
-
-  <div class="country-list-container">
-    <ul id="bucket-countries"></ul>
+  <button type="button" id="add-country">Add Country</button>
+  <button type="button" id="delete-countries">Clear Bucket List</button>
   </div>
 
+  <div class="container">
+
+    <div class="country-list-container">
+      <h2>Bucket List</h2>
+      <ul id="bucket-countries"></ul>
+    </div>
+
+    <div class="map" id="main-map"></div>
+  </div>
 </body>
 </html>
